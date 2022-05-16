@@ -1,6 +1,22 @@
+import email
 import json
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+
+from pymongo import MongoClient
+client = MongoClient(
+    'mongodb+srv://turtlegram_hyun:gvSqX2om2UrFgQfU@cluster0.lh7vh.mongodb.net/cluster0?retryWrites=true&w=majority')
+db = client.dbturtlegram
+
+email = {
+    'email': ' ',
+}
+db.email.insert_one(email)
+
+password = {
+    'password': ' ',
+}
+db.password.insert_one(password)
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
@@ -21,4 +37,4 @@ def sign_up():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5500, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
